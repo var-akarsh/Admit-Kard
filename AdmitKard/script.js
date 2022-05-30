@@ -9,38 +9,38 @@ const app = express();
 app.use(express.static('public'))
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
     
-// app.get('/', (req, res) => {
-//   res.sendFile(__dirname + '/index.html');
-// });
+ app.get('/', (req, res) => {
+   res.sendFile(__dirname + '/index.html');
+ });
 
 
-// app.post('/', urlencodedParser, (req, res) => {
-//     console.log('Got body:', req.body);
-//     res.send('Your data has been stored in the database').status(200);
+ app.post('/', urlencodedParser, (req, res) => {
+     console.log('Got body:', req.body);
+     res.send('Your data has been stored in the database').status(200);
 
-//     var name = req.body.name;
-//     var email = req.body.email;
-//     var contact = req.body.contact
-//     var course = req.body.course
-//     var country = req.body.country;
-//     var DOB = req.body.DOB;
+     var name = req.body.name;
+     var email = req.body.email;
+     var contact = req.body.contact
+     var course = req.body.course
+     var country = req.body.country;
+     var DOB = req.body.DOB;
 
-//     MongoClient.connect(url, function(err, db) {
+     MongoClient.connect(url, function(err, db) {
         
-//         if (err) throw err;
-//         var dbo = db.db("admit");
-//         var myobj = { name, email,contact,course,country,DOB };
+        if (err) throw err;
+        var dbo = db.db("admit");
+         var myobj = { name, email,contact,course,country,DOB };
 
         
-//         dbo.collection("data").insertOne(myobj, function(err, res) {
-//           if (err) throw err;
-//           console.log("1 document inserted");
-//           db.close();
-//         });
-//       });
+         dbo.collection("data").insertOne(myobj, function(err, res) {
+           if (err) throw err;
+           console.log("1 document inserted");
+           db.close();
+         });
+       });
 
-//     console.log(name);
-// });
+     console.log(name);
+ });
     
 app.get('/find', (req, res) => {
     res.sendFile(__dirname + '/email.html');
@@ -48,7 +48,7 @@ app.get('/find', (req, res) => {
   });
 
 
-  app.post('/', urlencodedParser, (req, res) => {
+  app.post('/find', urlencodedParser, (req, res) => {
     console.log('Got body:', req.body);
     // res.sendStatus(200);
 
